@@ -1,0 +1,11 @@
+C:\DevTech\Repos\PactServer\PactServer\PactServer\bin\Debug\netcoreapp2.0\PactServer.deps.json
+C:\DevTech\Repos\PactServer\PactServer\PactServer\bin\Debug\netcoreapp2.0\PactServer.runtimeconfig.json
+C:\DevTech\Repos\PactServer\PactServer\PactServer\bin\Debug\netcoreapp2.0\PactServer.runtimeconfig.dev.json
+C:\DevTech\Repos\PactServer\PactServer\PactServer\bin\Debug\netcoreapp2.0\PactServer.dll
+C:\DevTech\Repos\PactServer\PactServer\PactServer\obj\Debug\netcoreapp2.0\PactServer.csprojAssemblyReference.cache
+C:\DevTech\Repos\PactServer\PactServer\PactServer\obj\Debug\netcoreapp2.0\PactServer.csproj.CoreCompileInputs.cache
+C:\DevTech\Repos\PactServer\PactServer\PactServer\obj\Debug\netcoreapp2.0\PactServer.AssemblyInfoInputs.cache
+C:\DevTech\Repos\PactServer\PactServer\PactServer\obj\Debug\netcoreapp2.0\PactServer.AssemblyInfo.cs
+C:\DevTech\Repos\PactServer\PactServer\PactServer\bin\Debug\netcoreapp2.0\PactServer.pdb
+C:\DevTech\Repos\PactServer\PactServer\PactServer\obj\Debug\netcoreapp2.0\PactServer.dll
+C:\DevTech\Repos\PactServer\PactServer\PactServer\obj\Debug\netcoreapp2.0\PactServer.pdb

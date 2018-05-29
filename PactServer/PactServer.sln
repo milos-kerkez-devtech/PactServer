@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PactServer", "PactServer\PactServer.csproj", "{37108B1A-8BFA-4F8C-8024-1D548F252E96}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PactServerTest", "PactServerTest\PactServerTest.csproj", "{C7581F36-122F-436D-AE00-7DD48EF124EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37108B1A-8BFA-4F8C-8024-1D548F252E96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37108B1A-8BFA-4F8C-8024-1D548F252E96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37108B1A-8BFA-4F8C-8024-1D548F252E96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37108B1A-8BFA-4F8C-8024-1D548F252E96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7581F36-122F-436D-AE00-7DD48EF124EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7581F36-122F-436D-AE00-7DD48EF124EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7581F36-122F-436D-AE00-7DD48EF124EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7581F36-122F-436D-AE00-7DD48EF124EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A81D59D9-8AD8-4B39-9C00-95C8DDD2A0A3}
+	EndGlobalSection
+EndGlobal
