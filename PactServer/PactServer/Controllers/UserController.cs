@@ -1,11 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PactServer.Controllers
 {
     [Route("api/[controller]")]
     public class UserController : Controller
     {
+        private readonly UserService _userService;
+
+        public UserController()
+        {
+            _userService = new UserService();
+        }
+
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
@@ -15,15 +23,15 @@ namespace PactServer.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult Get(string id)
         {
-            var user = new UserModel
+            var user = _userService.GetUser(id);
+
+            if (user != null)
             {
-                Id = "Test",
-                FirstName = "Milos",
-                LastName = "Kerkez"
-            };
-            return Ok(user);
+                return Ok(user);
+            }
+            return NotFound();
         }
 
         // POST api/values

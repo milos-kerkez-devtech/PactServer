@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using PactServer;
 
 namespace PactServerTest
 {
@@ -16,6 +18,7 @@ namespace PactServerTest
         private const string ConsumerName = "Consumer";
         private readonly RequestDelegate _next;
         private readonly IDictionary<string, Action> _providerStates;
+        private readonly UserService _userService;
 
         public ProviderStateMiddleware(RequestDelegate next)
         {
@@ -23,36 +26,23 @@ namespace PactServerTest
             _providerStates = new Dictionary<string, Action>
             {
                 {
-                    "There is no data",
-                    RemoveAllData
-                },
-                {
                     "There is a something with id 'tester'",
-                    AddData
+                    AddUser
                 }
             };
+            _userService = new UserService();
         }
+        
 
-        private void RemoveAllData()
+        private void AddUser()
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), @"C:/DevTech/Repos/data");
-            var deletePath = Path.Combine(path, "somedata.txt");
-
-            if (File.Exists(deletePath))
+            var user = new UserModel
             {
-                File.Delete(deletePath);
-            }
-        }
-
-        private void AddData()
-        {
-            //string path = Path.Combine(Directory.GetCurrentDirectory(), @"C:\DevTech\Repos\data");
-            //var writePath = Path.Combine(path, "somedata.txt");
-
-            //if (!File.Exists(writePath))
-            //{
-            //    File.Create(writePath);
-            //}
+                Id = "Test",
+                FirstName = "Milos",
+                LastName = "Kerkez"
+            };
+            _userService.AddUser(user);
         }
 
         public async Task Invoke(HttpContext context)

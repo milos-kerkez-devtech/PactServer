@@ -4,6 +4,8 @@ using PactNet;
 using PactNet.Infrastructure.Outputters;
 using System;
 using System.Collections.Generic;
+using Microsoft.ApplicationInsights.Extensibility.Implementation;
+using PactServer;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -15,9 +17,12 @@ namespace PactServerTest
         private string _pactServiceUri { get; }
         private IWebHost _webHost { get; }
         private ITestOutputHelper _outputHelper { get; }
+        private readonly UserService _userService;
+       
 
         public UserApiTests(ITestOutputHelper output)
         {
+            _userService = new UserService();
             _outputHelper = output;
             _providerUri = "http://localhost:63430";
             _pactServiceUri = "http://localhost:9000";
@@ -52,12 +57,16 @@ namespace PactServerTest
 
             //Act / Assert
             IPactVerifier pactVerifier = new PactVerifier(config);
+
             pactVerifier.ProviderState($"{_pactServiceUri}/provider-states")
                 .ServiceProvider("Provider", _providerUri)
                 .HonoursPactWith("Consumer")
                 .PactUri(@"C:\DevTech\Repos\pacts\consumer-something_api.json")
                 .Verify();
+
+            _userService.DeleteUser("Test");
         }
+
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
