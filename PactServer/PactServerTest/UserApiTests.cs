@@ -39,17 +39,11 @@ namespace PactServerTest
             // Arrange
             var config = new PactVerifierConfig
             {
-
-                // NOTE: We default to using a ConsoleOutput,
-                // however xUnit 2 does not capture the console output,
-                // so a custom outputter is required.
                 Outputters = new List<IOutput>
                                 {
                                     new XUnitOutput(OutputHelper)
                                 },
                                 CustomHeader= new KeyValuePair<string, string> ( "Content-Type", "application/json; charset=utf-8"),
-
-                // Output verbose verification logs to the test output
                 Verbose = true
             };
 
@@ -67,7 +61,7 @@ namespace PactServerTest
 
 
         #region IDisposable Support
-        private bool disposedValue = false; // To detect redundant calls
+        private bool disposedValue = false;
 
         protected virtual void Dispose(bool disposing)
         {
@@ -83,10 +77,9 @@ namespace PactServerTest
             }
         }
 
-        // This code added to correctly implement the disposable pattern.
+       
         public void Dispose()
         {
-            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
             Dispose(true);
         }
         #endregion

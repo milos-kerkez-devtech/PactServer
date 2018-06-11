@@ -15,18 +15,11 @@ namespace PactServer.Controllers
             _userService = new UserService();
         }
 
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/user/5
+        // GET user/test
         [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
-            return new JsonResult(new
+            return Ok(new UserModel
             {
                 Id = "Test",
                 FirstName = "Milos",
@@ -39,32 +32,6 @@ namespace PactServer.Controllers
             //    return Ok(user);
             //}
             //return NotFound();
-        }
-
-        private bool DataMissing()
-        {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), @"C:/DevTech/Repos/pacts/data");
-            string pathWithFile = Path.Combine(path, "somedata.txt");
-
-            return !System.IO.File.Exists(pathWithFile);
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }
