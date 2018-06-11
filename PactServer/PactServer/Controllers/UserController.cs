@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace PactServer.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class UserController : Controller
     {
         private readonly UserService _userService;
@@ -21,17 +22,31 @@ namespace PactServer.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
+        // GET api/user/5
         [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
-            var user = _userService.GetUser(id);
-
-            if (user != null)
+            return new JsonResult(new
             {
-                return Ok(user);
-            }
-            return NotFound();
+                Id = "Test",
+                FirstName = "Milos",
+                LastName = "Kerkez"
+            });
+            //var user = _userService.GetUser(id);
+
+            //if (user != null)
+            //{
+            //    return Ok(user);
+            //}
+            //return NotFound();
+        }
+
+        private bool DataMissing()
+        {
+            string path = Path.Combine(Directory.GetCurrentDirectory(), @"C:/DevTech/Repos/pacts/data");
+            string pathWithFile = Path.Combine(path, "somedata.txt");
+
+            return !System.IO.File.Exists(pathWithFile);
         }
 
         // POST api/values

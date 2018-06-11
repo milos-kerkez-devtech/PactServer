@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using PactNet;
 using PactNet.Infrastructure.Outputters;
+using PactServer;
 using System;
 using System.Collections.Generic;
-using Microsoft.ApplicationInsights.Extensibility.Implementation;
-using PactServer;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -13,26 +11,26 @@ namespace PactServerTest
 {
     public class UserApiTests : IDisposable
     {
-        private string _providerUri { get; }
-        private string _pactServiceUri { get; }
-        private IWebHost _webHost { get; }
-        private ITestOutputHelper _outputHelper { get; }
+        private string ProviderUri { get; }
+        private string PactServiceUri { get; }
+        private IWebHost WebHost { get; }
+        private ITestOutputHelper OutputHelper { get; }
         private readonly UserService _userService;
        
 
         public UserApiTests(ITestOutputHelper output)
         {
             _userService = new UserService();
-            _outputHelper = output;
-            _providerUri = "http://localhost:63430";
-            _pactServiceUri = "http://localhost:9000";
+            OutputHelper = output;
+            ProviderUri = "http://localhost:63430";
+            PactServiceUri = "http://localhost:9000";
 
-            _webHost = WebHost.CreateDefaultBuilder()
-                .UseUrls(_pactServiceUri)
+            WebHost = Microsoft.AspNetCore.WebHost.CreateDefaultBuilder()
+                .UseUrls(PactServiceUri)
                 .UseStartup<TestStartup>()
                 .Build();
 
-            _webHost.Start();
+            WebHost.Start();
         }
 
         [Fact]
@@ -47,7 +45,7 @@ namespace PactServerTest
                 // so a custom outputter is required.
                 Outputters = new List<IOutput>
                                 {
-                                    new XUnitOutput(_outputHelper)
+                                    new XUnitOutput(OutputHelper)
                                 },
                                 CustomHeader= new KeyValuePair<string, string> ( "Content-Type", "application/json; charset=utf-8"),
 
@@ -58,13 +56,13 @@ namespace PactServerTest
             //Act / Assert
             IPactVerifier pactVerifier = new PactVerifier(config);
 
-            pactVerifier.ProviderState($"{_pactServiceUri}/provider-states")
-                .ServiceProvider("Provider", _providerUri)
+            pactVerifier.ProviderState($"{PactServiceUri}/provider-states")
+                .ServiceProvider("Provider", ProviderUri)
                 .HonoursPactWith("Consumer")
-                .PactUri(@"C:\DevTech\Repos\pacts\consumer-something_api.json")
+                .PactUri(@"C:\DevTech\Repos\pacts\consumer-user_api.json")
                 .Verify();
 
-            _userService.DeleteUser("Test");
+            //_userService.DeleteUser("Test");
         }
 
 
@@ -77,8 +75,8 @@ namespace PactServerTest
             {
                 if (disposing)
                 {
-                    _webHost.StopAsync().GetAwaiter().GetResult();
-                    _webHost.Dispose();
+                    WebHost.StopAsync().GetAwaiter().GetResult();
+                    WebHost.Dispose();
                 }
 
                 disposedValue = true;

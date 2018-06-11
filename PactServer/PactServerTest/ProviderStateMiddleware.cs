@@ -26,23 +26,22 @@ namespace PactServerTest
             _providerStates = new Dictionary<string, Action>
             {
                 {
-                    "There is a something with id 'tester'",
+                    "There is a user with id 'test'",
                     AddUser
                 }
             };
             _userService = new UserService();
         }
-        
 
         private void AddUser()
         {
-            var user = new UserModel
-            {
-                Id = "Test",
-                FirstName = "Milos",
-                LastName = "Kerkez"
-            };
-            _userService.AddUser(user);
+           // var user = new UserModel
+           // {
+           //     Id = "Test",
+           //     FirstName = "Milos",
+           //     LastName = "Kerkez"
+           // };
+           //_userService.AddUser(user);
         }
 
         public async Task Invoke(HttpContext context)
